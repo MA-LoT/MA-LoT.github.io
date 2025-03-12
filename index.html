@@ -175,7 +175,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-           Solving mathematical problems using computer-verifiable languages like Lean has significantly impacted mathematical and computer science communities. State-of-the-art methods utilize single Large Language Models (LLMs) as agents or provers to either generate complete proof or perform tree searches. However, single-agent methods inherently lack a structured way to combine high-level reasoning in Natural Language (NL) with Formal Language (FL) verification feedback. To solve these issues, we propose MA-LoT: Multi-Agent Lean-based Long Chain-of-Thought framework, (to the best of our knowledge), the first multi-agent framework for Lean4 theorem proving that balance high-level NL reasoning and FL verification in Long CoT. Using this structured interaction, our approach enables deeper insights and long-term coherence in proof generation, with which past methods struggle. We do this by leveraging emergent formal reasoning ability in Long CoT using our novel LoT-Transfer Learning training-inference pipeline. Extensive experiments show that our framework achieves a 61.07% accuracy rate on the Lean4 version of the MiniF2F-Test dataset, largely outperforming GPT-4 (22.95%), single-agent tree search (InternLM-Step-Prover, 50.70%), and whole-proof generation (Godel-Prover, 55.33%) baselines. Furthermore, our findings highlight the potential of combining Long CoT with formal verification for a more insightful generation in a broader perspective.
+           Solving mathematical problems using computer-verifiable languages like Lean has significantly impacted mathematical and computer science communities. 
+           State-of-the-art methods utilize single Large Language Models (LLMs) as agents or provers to either generate complete proof or perform tree searches. 
+           However, single-agent methods inherently lack a structured way to combine high-level reasoning in Natural Language (NL) with Formal Language (FL) verification feedback. 
+           To solve these issues, we propose MA-LoT: Multi-Agent Lean-based Long Chain-of-Thought framework, (to the best of our knowledge), 
+           the first multi-agent framework for Lean4 theorem proving that balance high-level NL reasoning and FL verification in Long CoT. 
+           Using this structured interaction, our approach enables deeper insights and long-term coherence in proof generation, with which past methods struggle. 
+           We do this by leveraging emergent formal reasoning ability in Long CoT using our novel LoT-Transfer Learning training-inference pipeline. 
+           Extensive experiments show that our framework achieves a 61.07% accuracy rate on the Lean4 version of the MiniF2F-Test dataset, largely outperforming GPT-4 (22.95%), 
+           single-agent tree search (InternLM-Step-Prover, 50.70%), and whole-proof generation (Godel-Prover, 55.33%) baselines. 
+           Furthermore, our findings highlight the potential of combining Long CoT with formal verification for a more insightful generation in a broader perspective.
           </p>
         </div>
       </div>
@@ -183,6 +192,51 @@
   </div>
 </section>
 <!-- End paper abstract -->
+
+<!-- Methodology -->
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Methodology</h2>
+        <!-- 新增图片区块 -->
+        <div class="has-text-centered" style="margin: 3rem 0;">
+          <img 
+            src="static/images/mainplot.png" 
+            alt="MainPlot"
+            style="max-width: 80%; height: auto; border-radius: 8px;">
+          <p class="has-text-grey is-size-7 mt-2">Fig1 Overview of MA-LoT</p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            This study proposes <b>MA-LoT</b>, which is, to the best of our knowledge, the first multi-agent Lean-based Long Chain-of-Thought method for enhancing formal theorem proving (details in Fig. 1). 
+            We achieve this by introducing a novel Lean-of-Thought Transfer-Learning (LoT-TL) training-inference pipeline that trains a model to possess field-specific Long CoT capabilities 
+            without the need for complex reinforcement learning (RL) or annotated Long CoT data.
+            <data value="" class=""></data>
+          </p>
+          <p>
+            In the training stage of LoT-TL, we first annotate a Natural Language–Formal Language (NL-FL) aligned supervised fine-tuning (SFT) dataset by writing formal language (FL) proofs for 
+            Lean-Workbook statements and corresponding natural language (NL) statements from the DeepSeek-Prover-V1 dataset. While writing proofs for Lean-Workbook, 
+            we also collect incorrect attempts for each theorem and construct a dataset specifically for training a correction model. 
+            Subsequently, we use a general NL dataset to teach the LLM Long CoT capabilities, utilizing a system prompt to instruct the model to activate Long CoT mode. 
+            After that, we use the annotated SFT data to further train the model, instructing it via the system prompt to deactivate Long CoT, while preserving the Long CoT format through the use of placeholders. 
+            Finally, we train the model on the correction dataset using a similar method. 
+            After completing this training procedure, we obtain the <i>LoT-Solver</i> model, which serves as the base model for both prover and corrector agents.
+            <data value="" class=""></data>
+          </p>
+          <p>
+            The multi-agent inference framework employs the <i>LoT-Solver</i> as the prover agent, performing whole-proof generation based on the natural language and Lean4 statements of the given problem, guided by a system prompt and a Long CoT header instructing the model to use Long CoT analysis. 
+            Subsequently, the generated proofs are iteratively refined through a Long CoT-based correction mechanism. Specifically, the prover agent analyzes and generates a proof, after which a separate verifier agent (also based on the <i>LoT-Solver</i>) checks and provides feedback, iteratively improving the solution. This collaborative loop continues until the proof is complete and correct.
+            <data value="" class=""></data>
+          </p>          
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+<!-- End Methodology -->
+ 
 
 <!-- Main result table -->
 <!-- Results Section -->
@@ -440,10 +494,10 @@
           </thead>
           <thead>
             <tr>
-              <th>Tree-search methods</th>
-              <th></th>
-              <th></th>
-              <th></th>
+              <td><i>Tree-search methods</i></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
           </thead>
           <tbody>
@@ -482,10 +536,10 @@
             <!-- Block 2 - Whole proof generation -->
             <thead>
               <tr>
-                <th>Whole-proof generation methods</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td><i>Whole-proof generation methods</i></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </thead>
             <tr class="block-2">
@@ -540,10 +594,10 @@
             <!-- Block 3 - Our methods -->
             <thead>
               <tr>
-                <th>Our results</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td><i>Our methods</i></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </thead>
 
@@ -633,7 +687,7 @@
               <td>54.92%</td>
               <td>59.43%</td>
               <td>61.07%</td>
-              <td>51.89%</td>
+              <td>61.89%</td>
             </tr>
           </tbody>
         </table>
