@@ -184,6 +184,471 @@
 </section>
 <!-- End paper abstract -->
 
+<!-- Main result table -->
+<!-- Results Section -->
+<section class="results-section">
+  <style>
+    .lot-row {
+      font-weight: bold;
+    }
+
+    .results-section {
+      padding: 4rem 2rem;
+      background: #f8f9fa;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .results-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .subsection-title {
+      color: #2c3e50;
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table-container th {
+      background-color: white;
+      padding: 12px 15px;
+      text-align: left;
+      font-weight: bold;
+      border-bottom: 2px solid #eee;
+    }
+
+    .table-container td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    .block-1 {
+      background-color: #fff0f5;
+      /* 浅粉色 */
+    }
+
+    .block-2 {
+      background-color: #f0f8ff;
+      /* 浅蓝色 */
+    }
+
+    .block-3 {
+      background-color: #f0fff0;
+      /* 浅绿色 */
+    }
+
+    .highlight {
+      color: #2980b9;
+      font-weight: bold;
+    }
+
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table-container th,
+    .table-container td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .table-container th {
+      background-color: #f8f9fa;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .highlight {
+      color: #2980b9;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .description {
+      margin: 1.5rem 0;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .diamond-green {
+      color: #22c55e;
+    }
+
+    .diamond-black {
+      color: #000;
+    }
+
+    .multirow {
+      vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+      .results-section {
+        padding: 2rem 1rem;
+      }
+
+      .table-container th,
+      .table-container td {
+        padding: 8px;
+        font-size: 0.9rem;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+    }
+
+    .key-findings {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .key-findings h3 {
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+
+    .key-findings ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-findings li {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+      color: #4a5568;
+    }
+
+    .key-findings li:before {
+      content: "•";
+      color: #3b82f6;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 768px) {
+      .key-findings {
+        padding: 1.5rem;
+      }
+    }
+
+    .figures-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+
+    .figure-wrapper {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+    }
+
+    .figure-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .figure-caption {
+      text-align: center;
+      color: #4a5568;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .figure-wrapper {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+
+  <div class="results-container">
+    <h2 class="section-title">Experimental Results</h2>
+
+    <h3 class="subsection-title">Benchmarks</h3>
+    <div class="description">
+      <p>Following previous works, we measure the performance of proposed framework by MiniF2F-Test and Valid datasets. Both datasets contain 244 Lean4 statements, 
+        whose range varies from high-school competition questions to undergraduate-level theorem proofs. The dataset consists of problems from three sources: (1) 260 problems 
+        sampled from the MATH dataset. (2) 160 problems from high-school math competitions. (3) 168 manually crafted problems at the same difficulty level as (2).
+      </p>
+    </div>
+
+
+    <h3 class="subsection-title">Main Results</h3>
+      <!-- Full Proof Generation Results -->
+      <div class="table-container">
+        <h3 class="subtitle">Table 1: Main experiment results</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Sample budget</th>
+              <th>MiniF2F-Valid</th>
+              <th>MiniF2F-Test</th>
+            </tr>
+          </thead>
+          <thead>
+            <tr>
+              <th>Tree-search methods</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Block 1 - Tree-search methods -->
+            <tr class="block-1">
+              <td>ReProver</td>
+              <td>pass@1</td>
+              <td>-</td>
+              <td>26.50%</td>
+            </tr>
+            <tr class="block-1">
+              <td>Llemma</td>
+              <td>1x32x100</td>
+              <td>27.90%</td>
+              <td>25.80%</td>
+            </tr>
+            <tr class="block-1">
+              <td>Expert Iteration</td>
+              <td>8x8x512</td>
+              <td>41.20%</td>
+              <td>36.60%</td>
+            </tr>
+            <tr class="block-1">
+              <td>Lean-STaR</td>
+              <td>64x1x50</td>
+              <td>-</td>
+              <td>46.30%</td>
+            </tr>
+            <tr class="block-1">
+              <td>InternLM2.5-StepProver</td>
+              <td>2x32x600</td>
+              <td>56.00%</td>
+              <td>50.70%</td>
+            </tr>
+
+            <!-- Block 2 - Whole proof generation -->
+            <thead>
+              <tr>
+                <th>Whole-proof generation methods</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tr class="block-2">
+              <td>GPT-4-Turbo</td>
+              <td>pass@128</td>
+              <td>25.41%</td>
+              <td>22.95%</td>
+            </tr>
+            <tr class="block-2">
+              <td>DeepSeek-Math</td>
+              <td>pass@128</td>
+              <td>25.80%</td>
+              <td>24.60%</td>
+            </tr>
+            <tr class="block-2">
+              <td>Gemini-1.5-Pro</td>
+              <td>pass@128</td>
+              <td>29.92%</td>
+              <td>27.87%</td>
+            </tr>
+            <tr class="block-2">
+              <td>TheoremLlama</td>
+              <td>pass@128</td>
+              <td>38.52%</td>
+              <td>35.66%</td>
+            </tr>
+            <tr class="block-2">
+              <td>DeepSeek-Prover-v1.5-RL</td>
+              <td>pass@128</td>
+              <td>54.10%</td>
+              <td>48.36%</td>
+            </tr>
+            <tr class="block-2">
+              <td>DeepSeek-R1-Distilled-Qwen-7B</td>
+              <td>pass@32</td>
+              <td>-</td>
+              <td>51.23%</td>
+            </tr>
+            <tr class="block-2">
+              <td>STP-Lean</td>
+              <td>pass@128</td>
+              <td>-</td>
+              <td>56.15%</td>
+            </tr>
+            <tr class="block-2">
+              <td>Goedel-Prover-SFT</td>
+              <td>pass@32</td>
+              <td>-</td>
+              <td>55.33%</td>
+            </tr>
+
+            <!-- Block 3 - Our methods -->
+            <thead>
+              <tr>
+                <th>Our results</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tr class="block-3">
+              <td>DeepSeek-Prover + LoT (whole-proof)</td>
+              <td>pass@128</td>
+              <td>62.70%</td>
+              <td>52.05%</td>
+            </tr>
+            <tr class="block-3 lot-row">
+              <td>DeepSeek-Prover + MA-LoT</td>
+              <td>64 + 32x2</td>
+              <td class="highlight">64.34%</td>
+              <td>54.51%</td>
+            </tr>
+            <tr class="block-3">
+              <td>Goedel-Prover + LoT (whole-proof)</td>
+              <td>pass@32</td>
+              <td>-</td>
+              <td>57.79%</td>
+            </tr>
+            <tr class="block-3 lot-row">
+              <td>Goedel-Prover + MA-LoT</td>
+              <td>16 + 8x2</td>
+              <td>-</td>
+              <td class="highlight">61.07%</td>
+            </tr>
+            <tr class="block-3 lot-row">
+              <td>MA-LoT</td>
+              <td>Accumulative</td>
+              <td class="highlight">65.98%</td>
+              <td class="highlight">63.93%</td>
+            </tr>
+            
+            <!-- <tr class="block-3">
+              <td>Deepseek-Prover-v1.5-SFT</td>
+              <td>4×6400</td>
+              <td>55.8%</td>
+            </tr>
+            <tr class="block-3">
+              <td>Deepseek-Prover-v1.5-RL</td>
+              <td>4×6400</td>
+              <td>58.5%</td>
+            </tr>
+            <tr class="block-3 lot-row">
+              <td>lot-Prover-SFT</td>
+              <td>4×6400</td>
+              <td class="highlight">64.7%</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="description">
+        <p>
+          The main experimental results of MA-LoT. Pur results is presented as <i>Base model + method</i>. The LoT (whole-proof) indicates using the whole-proof results of our 
+          <i>LoT-Solver</i> model and MA-LoT indicates the result of our whole pipeline. The sampling budget <i>x + k</i>*<i>y</i> in the MA-LoT indicates we forst perform <i>x</i>
+          times of whole-proof writing using the prover agent and <i>k</i> rounds of correction using the corrector agent. In practice, one round of correction costs approximately 
+          half of the whole-proof generation budget, result in <i>y = 1/2 x</i>
+        </p>
+      </div>
+
+    <h3 class="subsection-title">Corrector Results</h3>
+      <!-- Multiple Dataset Performance -->
+      <div class="table-container">
+        <h3 class="subtitle">Table 2: Result of different rounds of corrector agent.</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Prover</th>
+              <th>1 Round</th>
+              <th>2 Round</th>
+              <th>3 Round</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DeepSeek-Prover + MA-LoT</td>
+              <td>51.64%</td>
+              <td>53.28%</td>
+              <td>54.51%</td>
+              <td>55.33%</td>
+            </tr>
+            <tr class="goedel-row">
+              <td>Goedel-Prover + MA-LoT</td>
+              <td>54.92%</td>
+              <td>59.43%</td>
+              <td>61.07%</td>
+              <td>51.89%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="description">
+        <p>
+          The experiment result of different round of correction is demostrated in Table 2. The prover column demostrates the pass@64 (or 16) result of the prover agent in the 
+          whole proof generation, while Round i indicate successive correction rounds. The results inidcate that during the first three correction rounds, the corrector successfully 
+          correct an average of 11.55% of theorems that the prover unable to answer. The case study whows that most corrected proofs belong to IMO, AIME and high-level MATH problems.
+        </p>
+      </div>
+  </div>
+</section>
+
 
 <!-- Image carousel -->
 <!-- <section class="hero is-small">
