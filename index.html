@@ -210,14 +210,14 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            This study proposes <b>MA-LoT</b>, which is, to the best of our knowledge, the first multi-agent Lean-based Long Chain-of-Thought method for enhancing formal theorem proving (details in Fig. 1). 
-            We achieve this by introducing a novel Lean-of-Thought Transfer-Learning (LoT-TL) training-inference pipeline that trains a model to possess field-specific Long CoT capabilities 
-            without the need for complex reinforcement learning (RL) or annotated Long CoT data.
+            This study proposes <b>MA-LoT</b>, which is, to the best of our knowledge, (to the best of our knowledge), the first multi-agent Lean-based Long Chain-of-Thought method for enhancing formal theorem proving (details in Fig. 1). 
+            We achieve this by introducing a novel <b>Lean-of-Thought Transfer-Learning</b> (LoT-TL) training-inference pipeline that trains a model to possess field-specific Long CoT capabilities 
+            <b>without the need for complex reinforcement learning (RL) or annotated Long CoT data</b>.
             <data value="" class=""></data>
           </p>
           <p>
             In the training stage of LoT-TL, we first annotate a Natural Language–Formal Language (NL-FL) aligned supervised fine-tuning (SFT) dataset by writing formal language (FL) proofs for 
-            Lean-Workbook statements and corresponding natural language (NL) statements from the DeepSeek-Prover-V1 dataset. While writing proofs for Lean-Workbook, 
+            Lean-Workbook statements and corresponding natural language (NL) statements from the DeepSeek-Prover-V1 dataset. While writing Lean4 proofs for Lean-Workbook, 
             we also collect incorrect attempts for each theorem and construct a dataset specifically for training a correction model. 
             Subsequently, we use a general NL dataset to teach the LLM Long CoT capabilities, utilizing a system prompt to instruct the model to activate Long CoT mode. 
             After that, we use the annotated SFT data to further train the model, instructing it via the system prompt to deactivate Long CoT, while preserving the Long CoT format through the use of placeholders. 
@@ -226,8 +226,9 @@
             <data value="" class=""></data>
           </p>
           <p>
-            The multi-agent inference framework employs the <i>LoT-Solver</i> as the prover agent, performing whole-proof generation based on the natural language and Lean4 statements of the given problem, guided by a system prompt and a Long CoT header instructing the model to use Long CoT analysis. 
-            Subsequently, the generated proofs are iteratively refined through a Long CoT-based correction mechanism. Specifically, the prover agent analyzes and generates a proof, after which a separate verifier agent (also based on the <i>LoT-Solver</i>) checks and provides feedback, iteratively improving the solution. This collaborative loop continues until the proof is complete and correct.
+            The multi-agent inference framework employs the <i>LoT-Solver</i> as the prover agent, performing <b>whole-proof generation</b> based on the natural language and Lean4 statements of the given problem, guided by a system prompt and a Long CoT header instructing the model to use Long CoT analysis. 
+            Subsequently, the generated proofs are iteratively refined through a <b>Long CoT-based correction mechanism</b>. Specifically, the prover agent analyzes and generates a proof, after which a separate verifier agent (also based on the <i>LoT-Solver</i>) 
+            checks and provides feedback, iteratively improving the solution. This collaborative loop continues until the proof is complete and correct.
             <data value="" class=""></data>
           </p>          
       </div>
