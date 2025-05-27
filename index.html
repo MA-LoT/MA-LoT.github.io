@@ -51,7 +51,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">MA-LoT: Multi-Agent Lean-based Long Chain-of-Thought Reasoning enhances Formal Theorem Proving</h1>
+            <h1 class="title is-1 publication-title">MA-LoT: Model-Collaboration Lean-based Long Chain-of-Thought Reasoning enhances Formal Theorem Proving</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -188,16 +188,20 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-           Solving mathematical problems using computer-verifiable languages like Lean has significantly impacted mathematical and computer science communities. 
-           State-of-the-art methods utilize single Large Language Models (LLMs) as agents or provers to either generate complete proof or perform tree searches. 
-           However, single-agent methods inherently lack a structured way to combine high-level reasoning in Natural Language (NL) with Formal Language (FL) verification feedback. 
-           To solve these issues, we propose MA-LoT: Multi-Agent Lean-based Long Chain-of-Thought framework, (to the best of our knowledge), 
-           the first multi-agent framework for Lean4 theorem proving that balance high-level NL reasoning and FL verification in Long CoT. 
-           Using this structured interaction, our approach enables deeper insights and long-term coherence in proof generation, with which past methods struggle. 
-           We do this by leveraging emergent formal reasoning ability in Long CoT using our novel LoT-Transfer Learning training-inference pipeline. 
-           Extensive experiments show that our framework achieves a 61.07% accuracy rate on the Lean4 version of the MiniF2F-Test dataset, largely outperforming GPT-4 (22.95%), 
-           single-agent tree search (InternLM-Step-Prover, 50.70%), and whole-proof generation (Godel-Prover, 55.33%) baselines. 
-           Furthermore, our findings highlight the potential of combining Long CoT with formal verification for a more insightful generation in a broader perspective.
+           Solving mathematical problems using computer-verifiable languages like Lean has significantly impacted the mathematical 
+            and computer science communities. 
+            State-of-the-art methods utilize a single Large Language Model (LLM) to generate complete proof or perform tree search, 
+            but they fail to balance these tasks. We propose <b>MA-LoT</b>: <i>Model-CollAboration Lean-based Long Chain-of-Thought</i>, 
+            a comprehensive framework for Lean4 theorem proving to solve this issue. 
+            It separates the cognition tasks of general NL for whole-proof generation and error analysis for proof correction using 
+            the model-collaboration method. 
+            We achieve this by structured interaction of the LLM and Lean4 verifier in Long CoT. 
+            To implement the framework, we propose the novel <i>LoT-Transfer Learning</i> training-inference pipeline, 
+            which enables the Long CoT thinking capability to LLMs without special data annotation. 
+            Extensive experiment shows that our framework achieves a <b>61.07%</b> accuracy rate on the Lean4 version of the MiniF2F-Test dataset, 
+            largely outperforming DeepSeek-V3 (33.61%), single-model tree search (InternLM-Step-Prover, 50.70%), 
+            and whole-proof generation (Godel-Prover, 55.33%) baselines. 
+            Furthermore, our findings highlight the potential of combining Long CoT with formal verification for a more insightful generation in a broader perspective.
           </p>
         </div>
       </div>
@@ -223,8 +227,10 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            This study proposes <b>MA-LoT</b>, which is, to the best of our knowledge, (to the best of our knowledge), the first multi-agent Lean-based Long Chain-of-Thought method for enhancing formal theorem proving (details in Fig. 1). 
-            We achieve this by introducing a novel <b>Lean-of-Thought Transfer-Learning</b> (LoT-TL) training-inference pipeline that trains a model to possess field-specific Long CoT capabilities 
+            This study proposes <b>MA-LoT</b>, a comprehensive Model-Collaboration Lean-based Long Chain-of-Thought method 
+            for enhancing formal theorem proving (details in Fig. 2). 
+            We achieve this by introducing a novel <b>Lean-of-Thought Transfer-Learning</b> (LoT-TL) training-inference pipeline 
+            that trains a model to possess field-specific Long CoT capabilities 
             <b>without the need for complex reinforcement learning (RL) or annotated Long CoT data</b>.
             <data value="" class=""></data>
           </p>
@@ -235,12 +241,12 @@
             Subsequently, we use a general NL dataset to teach the LLM Long CoT capabilities, utilizing a system prompt to instruct the model to activate Long CoT mode. 
             After that, we use the annotated SFT data to further train the model, instructing it via the system prompt to deactivate Long CoT, while preserving the Long CoT format through the use of placeholders. 
             Finally, we train the model on the correction dataset using a similar method. 
-            After completing this training procedure, we obtain the <i>LoT-Solver</i> model, which serves as the base model for both prover and corrector agents.
+            After completing this training procedure, we obtain the <i>LoT-Solver</i> model, which serves as the base model for both the prover and corrector models.
             <data value="" class=""></data>
           </p>
           <p>
-            The multi-agent inference framework employs the <i>LoT-Solver</i> as the prover agent, performing <b>whole-proof generation</b> based on the natural language and Lean4 statements of the given problem, guided by a system prompt and a Long CoT header instructing the model to use Long CoT analysis. 
-            Subsequently, the generated proofs are iteratively refined through a <b>Long CoT-based correction mechanism</b>. Specifically, the prover agent analyzes and generates a proof, after which a separate verifier agent (also based on the <i>LoT-Solver</i>) 
+            The model-collaboration inference framework employs the <i>LoT-Solver</i> as the prover model, performing <b>whole-proof generation</b> based on the natural language and Lean4 statements of the given problem, guided by a system prompt and a Long CoT header instructing the model to use Long CoT analysis. 
+            Subsequently, the generated proofs are iteratively refined through a <b>Long CoT-based correction mechanism</b>. Specifically, the prover model analyzes and generates a proof, after which a separate verifier (also based on the <i>LoT-Solver</i>) 
             checks and provides feedback, iteratively improving the solution. This collaborative loop continues until the proof is complete and correct.
             <data value="" class=""></data>
           </p>          
@@ -486,7 +492,7 @@
 
     <h3 class="subsection-title">Benchmarks</h3>
     <div class="description">
-      <p>Following previous works, we measure the performance of proposed framework by MiniF2F-Test and Valid datasets. Both datasets contain 244 Lean4 statements, 
+      <p>Following previous works, we measure the performance of the proposed framework by the MiniF2F-Test and Valid datasets. Both datasets contain 244 Lean4 statements, 
         whose range varies from high-school competition questions to undergraduate-level theorem proofs. The dataset consists of problems from three sources: (1) 260 problems 
         sampled from the MATH dataset. (2) 160 problems from high-school math competitions. (3) 168 manually crafted problems at the same difficulty level as (2).
       </p>
@@ -667,17 +673,17 @@
 
       <div class="description">
         <p>
-          The main experimental results of MA-LoT. Pur results is presented as <i>Base model + method</i>. The LoT (whole-proof) indicates using the whole-proof results of our 
-          <i>LoT-Solver</i> model and MA-LoT indicates the result of our whole pipeline. The sampling budget <i>x + k</i>*<i>y</i> in the MA-LoT indicates we forst perform <i>x</i>
-          times of whole-proof writing using the prover agent and <i>k</i> rounds of correction using the corrector agent. In practice, one round of correction costs approximately 
-          half of the whole-proof generation budget, result in <i>y = 1/2 x</i>
+          The main experimental results of MA-LoT. Our results are presented as <i>Base model + method</i>. The LoT (whole-proof) indicates using the whole-proof results of our 
+          <i>LoT-Solver</i> model, and MA-LoT indicates the result of our whole pipeline. The sampling budget <i>x + k</i>*<i>y</i> in the MA-LoT indicates we forst perform <i>x</i>
+          times of whole-proof writing using the prover and <i>k</i> rounds of correction using the corrector. In practice, one round of correction costs approximately 
+          half of the whole-proof generation budget, resulting in <i>y = 1/2 x</i>
         </p>
       </div>
 
     <h3 class="subsection-title">Corrector Results</h3>
       <!-- Multiple Dataset Performance -->
       <div class="table-container">
-        <h3 class="subtitle">Table 2: Result of different rounds of corrector agent.</h3>
+        <h3 class="subtitle">Table 2: Result of different rounds of corrector model.</h3>
         <table>
           <thead>
             <tr>
@@ -709,9 +715,9 @@
 
       <div class="description">
         <p>
-          The experiment result of different round of correction is demostrated in Table 2. The prover column demostrates the pass@64 (or 16) result of the prover agent in the 
-          whole proof generation, while Round i indicate successive correction rounds. The results inidcate that during the first three correction rounds, the corrector successfully 
-          correct an average of 11.55% of theorems that the prover unable to answer. The case study whows that most corrected proofs belong to IMO, AIME and high-level MATH problems.
+          The experiment result of different rounds of correction is demonstrated in Table 2. The prover column demonstrates the pass@64 (or 16) result of the prover in the 
+          whole proof generation, while Round i indicates successive correction rounds. The results indicate that during the first three correction rounds, the corrector successfully 
+          corrected an average of 11.55% of theorems that the prover was unable to answer. The case study shows that most corrected proofs belong to IMO, AIME, and high-level MATH problems.
         </p>
       </div>
   </div>
@@ -839,7 +845,7 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>@misc{wang2025malot,
-      title={MA-LoT: Multi-Agent Lean-based Long Chain-of-Thought Reasoning enhances Formal Theorem Proving}, 
+      title={MA-LoT: Model-Collaboration Lean-based Long Chain-of-Thought Reasoning enhances Formal Theorem Proving}, 
       author={Ruida Wang and Rui Pan and Yuxin Li and Jipeng Zhang and Yizhen Jia and Shizhe Diao and Renjie Pi and Junjie Hu and Tong Zhang},
       year={2025},
       eprint={2503.03205},
